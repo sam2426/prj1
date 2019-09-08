@@ -21,9 +21,12 @@
                     enter password
                 </div>
 
-                <button type="Login" class="btn btn-primary" [disabled]="!logInForm.form.valid">LogIn</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!logInForm.form.valid">LogIn</button>
+                <br> <br>
+                
 
             </form>
+            <button class="btn btn-primary" (click)="forgetPassword()">Forget Password</button>
         </div>
     </div>
 </div>

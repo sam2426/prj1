@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'node_modules/rxjs'
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +22,25 @@ export class AppService {
 
     return this.http.post(`${this.url}/users/signup`,params);
   }//end of signup function
+
+  public loginFunction(data):Observable<any>{
+    const params=new HttpParams()
+    .set('email', data.email)
+    .set('password',data.password);
+    return this.http.post(`${this.url}/users/login`,params);
+  }
+
+  public forgetPassword(data):Observable<any>{
+    const params=new HttpParams()
+    .set('email',data.email);
+    return this.http.post(`${this.url}/users/forgetPassword`,params);
+  }
+
+  public resetPassword(data):Observable<any>{
+    const params=new HttpParams()
+    .set('email',data.email)
+    .set('otp',data.otp)
+    .set('password',data.password);
+    return this.http.post(`${this.url}/users/resetPassword`,params);
+  }
 }

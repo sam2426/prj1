@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AppService } from './../../app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,18 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public toastr:ToastrService,
+    public appService:AppService,
+    public router:Router,
   ) {}
+
+  public goToUser(){
+    this.router.navigate(['/profile']);
+  }
+
+  public forgetPassword(){
+    console.log("forgot");
+    this.router.navigate(['/forget_password']);
+  }
 
   public logInFunction: any=()=> {
     if(!this.password){
@@ -26,8 +39,18 @@ export class LoginComponent implements OnInit {
         password:this.password
       }
       console.log(data);
+
+      this.appService.loginFunction(data).subscribe((apiResponse)=>{
+        console.log(apiResponse);
+
+        if(apiResponse.status===200){
+          this.toastr.success('Logged in Successfully');
+          this.goToUser();
+        }
+      })
     }    
   }
+
   ngOnInit() {
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forget-password',
@@ -16,6 +17,7 @@ export class ForgetPasswordComponent implements OnInit {
   constructor(
     public appService: AppService,
     public toastr:ToastrService,
+    public router:Router,
   ) { }
 
   ngOnInit() {
@@ -29,12 +31,16 @@ export class ForgetPasswordComponent implements OnInit {
     this.appService.forgetPassword(data).subscribe((apiResponse)=>{
       console.log(apiResponse);
       if(apiResponse.status===200){
-        this.toastr.success('Please check email for validator');
+        this.toastr.success(apiResponse.message);
       }
       else{
-        this.toastr.error("Email doesn't exist");
+        this.toastr.error(apiResponse.message);
       }
     })
+  }
+
+  public goToLogin(){
+    this.router.navigate(['/login']);
   }
 
   public updatePasswordFunction:any=()=>{
@@ -47,10 +53,11 @@ export class ForgetPasswordComponent implements OnInit {
     this.appService.resetPassword(data).subscribe((apiResponse)=>{
       console.log(apiResponse);
       if(apiResponse.status===200){
-        this.toastr.success('Password Changed');
+        this.toastr.success(apiResponse.message);
       }
       else{
-        this.toastr.error("Password requirements didn't meet");
+        this.toastr.error(apiResponse.message);
+        this.goToLogin();
       }
     })
 

@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserModule } from './user/user.module';
 import { TodoModule } from './todo/todo.module';
+import { UserInstanceModule } from './user-instance/user-instance.module';
 
 const routes: Routes = [{path:'home', component:HomeComponent,pathMatch:'full'},
 {path:'', redirectTo:'home', pathMatch:'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [{path:'home', component:HomeComponent,pathMatch:'full'},
   imports: [
     UserModule,
     TodoModule,
+    UserInstanceModule,
     HttpClientModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule]

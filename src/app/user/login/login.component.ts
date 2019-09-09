@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppService } from './../../app.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { NavbarService } from './../../services/navbar.service';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +15,24 @@ export class LoginComponent implements OnInit {
   public email:any;
   public password:any;
 
+  isLoggedIn = false;
+  role = '';
+
   constructor(
     public toastr:ToastrService,
     public appService:AppService,
     public router:Router,
-  ) {}
+    public cookie: CookieService,
+    public navbarService: NavbarService
+  ) {
+    this.navbarService.getLoginStatus().subscribe(status => this.isLoggedIn = status);
+  }
+
+  ngOnInit() {
+  }
 
   public goToUser(){
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/user-home']);
   }
 
   public forgetPassword(){
@@ -44,13 +56,23 @@ export class LoginComponent implements OnInit {
         console.log(apiResponse);
 
         if(apiResponse.status===200){
-          this.toastr.success('Logged in Successfully');
+          this.cookie.set('authToken', apiResponse.data.authToken);
+          this.cookie.set('receiverId', apiResponse.data.userDetails.userId);
+          this.cookie.set('receiverName', apiResponse.data.userDetails.firstName + ' ' + apiResponse.data.userDetails.lastName);
+          this.appService.setUserInfoInLocalStorage(apiResponse.data.userDetails);
+          this.navbarService.updateNavAfterAuth('user');
+          this.navbarService.updateLoginStatus(true);
+          this.role = 'user';
+          this.toastr.success(apiResponse.message);
+          console.log(apiResponse);
           this.goToUser();
+        }
+        else{
+          this.toastr.error(apiResponse.message);
         }
       })
     }    
   }
 
-  ngOnInit() {
-  }
+  
 }

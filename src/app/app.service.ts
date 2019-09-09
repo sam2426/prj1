@@ -43,4 +43,12 @@ export class AppService {
     .set('password',data.password);
     return this.http.post(`${this.url}/users/resetPassword`,params);
   }
+
+  public getUserInfoFromLocalStorage=()=>{
+    return JSON.parse(localStorage.getItem('userInfo'));
+  }
+
+  public setUserInfoInLocalStorage(data){
+    return localStorage.setItem('userInfo',JSON.stringify(data));
+  }
 }

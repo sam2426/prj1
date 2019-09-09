@@ -12,11 +12,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+                <!-- <div class="navbar-nav">
                     <a class="nav-item nav-link" [routerLink]="['/home']">Home </a>
                     <a class="nav-item nav-link" [routerLink]="['/login']">Login</a>
                     <a class="nav-item nav-link" [routerLink]="['/signup']">Signup</a>
                     <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </div> -->
+                <div class="nav navbar-nav" routerLinkActive="active">
+                    <!-- <a class="nav-link nav-item" routerLink="home">Home</a> -->
+                    <a class="nav-link nav-item" *ngFor="let link of links" [routerLink]="link.path">{{ link.text }}</a>
+                    <!-- <a class="nav-link nav-item" *ngIf="isLoggedIn" routerLink="logout" (click)="logout()">Logout</a> -->
                 </div>
             </div>
         </nav>

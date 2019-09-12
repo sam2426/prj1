@@ -57,14 +57,14 @@ export class LoginComponent implements OnInit {
 
         if(apiResponse.status===200){
           this.cookie.set('authToken', apiResponse.data.authToken);
-          this.cookie.set('receiverId', apiResponse.data.userDetails.userId);
-          this.cookie.set('receiverName', apiResponse.data.userDetails.firstName + ' ' + apiResponse.data.userDetails.lastName);
+          this.cookie.set('userId', apiResponse.data.userDetails.userId);
+          this.cookie.set('userName', apiResponse.data.userDetails.firstName + ' ' + apiResponse.data.userDetails.lastName);
           this.appService.setUserInfoInLocalStorage(apiResponse.data.userDetails);
           this.navbarService.updateNavAfterAuth('user');
           this.navbarService.updateLoginStatus(true);
           this.role = 'user';
           this.toastr.success(apiResponse.message);
-          console.log(apiResponse);
+          // console.log(apiResponse);
           this.goToUser();
         }
         else{

@@ -21,7 +21,7 @@
                 <div class="nav navbar-nav" routerLinkActive="active">
                     <!-- <a class="nav-link nav-item" routerLink="home">Home</a> -->
                     <a class="nav-link nav-item" *ngFor="let link of links" [routerLink]="link.path">{{ link.text }}</a>
-                    <!-- <a class="nav-link nav-item" *ngIf="isLoggedIn" routerLink="logout" (click)="logout()">Logout</a> -->
+                    <a class="nav-link nav-item" *ngIf="isLoggedIn" routerLink="logout" (click)="logout()">Logout</a>
                 </div>
             </div>
         </nav>

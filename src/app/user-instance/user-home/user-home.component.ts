@@ -3,6 +3,7 @@ import { ToastrService } from 'node_modules/ngx-toastr';
 import { CookieService } from 'node_modules/ngx-cookie-service';
 import { AppService } from '../../app.service';
 import { Router } from 'node_modules/@angular/router';
+// import {MatCardModule} from '@angular/material'
 
 @Component({
   selector: 'app-user-home',
@@ -30,5 +31,7 @@ export class UserHomeComponent implements OnInit {
   public userInfo:any;
   public receiverId:any;
   public receiverName:any;
+
+  
 
 }

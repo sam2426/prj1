@@ -51,4 +51,16 @@ export class AppService {
   public setUserInfoInLocalStorage(data){
     return localStorage.setItem('userInfo',JSON.stringify(data));
   }
+
+  public logout(): Observable<any> {
+    const params = new HttpParams()
+      .set('authToken', this.cookies.get('authtoken'));
+    return this.http.post(`${this.url}/users/logout`, params);
+  } // end logout function
+
+  public friendList():Observable<any>{
+    // const params=new HttpParams()
+    // .set('userId', this.cookies.get('userId'));
+    return this.http.get(`${this.url}/users/userId/allFriends`);
+  }
 }

@@ -11,6 +11,10 @@
                     First Name is required.
                 </div>
 
+                <div>
+                    <img src="https://app-profile-pics.s3.ap-south-1.amazonaws.com/1568383293250" height="150px" width="150px" alt=" image">
+                </div>
+
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" name="lastName" [(ngModel)]="lastName" #lname="ngModel" class="form-control" placeholder="Last Name" required>
@@ -50,6 +54,24 @@
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <app-profile-img></app-profile-img> -->
+                        <input
+                            style="display: none"
+                            #fileInput
+                            type="file" 
+                            accept="image/*" 
+                            (change)="processFile($event)" 
+                        >
+                        <button type="button" class="btn btn-primary" (click)=fileInput.click()>Select Profile Pic...</button>
+                    </div>
+
+                    <div *ngIf="selectedFile" class="img-preview-container">
+                        <div class="img-preview"
+                            [ngStyle]="{'background-image':'url('+ selectedFile.src +')'}" >
+                        </div>
                     </div>
 
                 <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.form.valid">SignUP</button>

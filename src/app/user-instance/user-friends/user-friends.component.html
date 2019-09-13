@@ -1,9 +1,12 @@
 <div class="container" style="width: 60%" *ngIf="userList.length>0">
     <div *ngFor="let friend of userList">
         <!-- <div class="col-md-8"> -->
-            <div class="d-flex flex-row justify-content-around">
-                <div class="bx">
+            <div class="d-flex flex-row justify-content-around box">
+                <div class="bx" *ngIf="friend.profilePic==null">
                     <img src="../../../assets/pics/small_profile.png" class="user align-self-center">
+                </div>
+                <div class="bx" *ngIf="friend.profilePic!=null">
+                    <img src="{{friend.profilePic}}" class="user align-self-center">
                 </div>
                 <div class="bx flex-column" style="text-align: left; width: 80%">
                     <div class="">{{friend.firstName}} {{friend.lastName}}</div>

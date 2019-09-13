@@ -5,3 +5,49 @@
 .ng-invalid:not(form){
     border-left:5px solid #A94442;
 }
+
+/* .img-preview-container{
+    background-color: #7f7f7f;
+    
+} */
+
+.img-preview{
+    background: center no-repeat;
+    position: relative;
+    /* border-radius: 50%; */
+    background-size: contain;
+    height: 116px;
+    width: 116px;
+
+    /* display: inline-block; */
+    /* background: no-repeat; */
+    /* background: center;
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-size: contain; */
+}
+
+
+/* .img-preview-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-preview {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-size: contain;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  } */

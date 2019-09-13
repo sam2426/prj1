@@ -13,15 +13,28 @@ export class AppService {
   constructor(public http: HttpClient, public cookies:CookieService) { }
 
   public signupFunction(data):Observable<any>{
+    
+    const formData=new FormData();
+    formData.append('image',data.profilePic);
+
     const params=new HttpParams()
     .set('firstName', data.firstName)
     .set('lastName', data.lastName)
     .set('mobileNumber', data.mobile)
     .set('email', data.email)
-    .set('password', data.password);
+    .set('password', data.password)
+    .set('gender',data.gender)
+    .set('profilePic',data.profilePic);
 
     return this.http.post(`${this.url}/users/signup`,params);
   }//end of signup function
+
+  public uploadImage(image:File):Observable<any>{
+    const formData=new FormData();
+    formData.append('image',image);
+    
+    return this.http.post(`${this.url}/users/uploadImage`, formData);
+  }
 
   public loginFunction(data):Observable<any>{
     const params=new HttpParams()

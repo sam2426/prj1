@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppService } from './../../app.service';
 import { Router } from '@angular/router';
+import { ImageService } from './../../services/image.service'
+
+class ImageSnippet{
+  constructor(
+    public src:string,
+    public file:File
+  ){}
+}
 
 @Component({
   selector: 'app-signup',
@@ -16,15 +24,34 @@ export class SignupComponent implements OnInit {
   public email:any;
   public password:any;
   public gender:any;
+  public picUrl:any;
 
   constructor(
     public toastr:ToastrService,
     public appService:AppService,
     public router:Router,
-
+    public imageService:ImageService
   ) { }
 
   ngOnInit() {
+  }
+
+  selectedFile:ImageSnippet;
+
+  processFile(event){
+    // debugger;
+    const file:File=event.target.files[0];
+    const reader=new FileReader();
+
+    reader.addEventListener('load',(event:any)=>{
+      // debugger;
+      this.selectedFile=new ImageSnippet(event.target.result,file)
+      this.appService.uploadImage(this.selectedFile.file).subscribe((apiResponse)=>{
+        this.picUrl=apiResponse;
+        console.log(apiResponse);
+      })
+    });
+    reader.readAsDataURL(file);
   }
 
   public goToSignIn(){
@@ -51,7 +78,8 @@ export class SignupComponent implements OnInit {
         mobile:this.mobile,
         email:this.email,
         password:this.password,
-        apiKey:this.gender,
+        gender:this.gender,
+        profilePic:this.picUrl,
        }
       console.log(data);
     

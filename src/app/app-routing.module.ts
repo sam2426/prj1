@@ -7,6 +7,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { UserModule } from './user/user.module';
 import { TodoModule } from './todo/todo.module';
 import { UserInstanceModule } from './user-instance/user-instance.module';
+// import { ImageUploadModule } from './shared/image-upload/image-upload.module';
 
 const routes: Routes = [{path:'home', component:HomeComponent,pathMatch:'full'},
 {path:'', redirectTo:'home', pathMatch:'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [{path:'home', component:HomeComponent,pathMatch:'full'},
     UserModule,
     TodoModule,
     UserInstanceModule,
+    // ImageUploadModule,
     HttpClientModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule]

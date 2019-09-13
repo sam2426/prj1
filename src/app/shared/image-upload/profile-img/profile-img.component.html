@@ -1,0 +1,8 @@
+<input
+    style="display: none"
+    #fileInput
+    type="file" 
+    accept="image/*" 
+    (change)="processFile($event)" 
+>
+<button (click)=fileInput.click()>Upload Profile Pic...</button>

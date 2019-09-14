@@ -71,9 +71,12 @@ export class AppService {
     return this.http.post(`${this.url}/users/logout`, params);
   } // end logout function
 
-  public friendList():Observable<any>{
-    // const params=new HttpParams()
-    // .set('userId', this.cookies.get('userId'));
-    return this.http.get(`${this.url}/users/userId/allFriends`);
+  public friendList(userId):Observable<any>{
+   return this.http.get(`${this.url}/users/${userId}/allFriends`);
+  }
+
+  public getSingleUser(userId):Observable<any>{
+    //passing the id for which data is needed.
+    return this.http.get(`${this.url}/users/${userId}/details`);
   }
 }

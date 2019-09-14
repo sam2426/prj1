@@ -1,46 +1,26 @@
 <div class="container" style="width: 60%" *ngIf="userList.length>0">
     <div *ngFor="let friend of userList">
         <!-- <div class="col-md-8"> -->
-            <div class="d-flex flex-row justify-content-around box">
-                <div class="bx" *ngIf="friend.profilePic==null">
-                    <img src="../../../assets/pics/small_profile.png" class="user align-self-center">
-                </div>
-                <div class="bx" *ngIf="friend.profilePic!=null">
-                    <img src="{{friend.profilePic}}" class="user align-self-center">
-                </div>
-                <div class="bx flex-column" style="text-align: left; width: 80%">
-                    <div class="">{{friend.firstName}} {{friend.lastName}}</div>
-                    <div class="">
-                        <p>this is a description {{friend.description}}</p>
-                    </div>
-                </div>
-
-                <div  class="bx">
-                    <button type="button"> Add</button>
-                    <br/>
-                    <br/>
-                    <!-- <a [routerLink]="['/blog',blog.blogId]" class="btn btn-primary">Read</a> -->
-             </div>
+        <div class="d-flex flex-row justify-content-around box">
+            <div class="align-self-center" *ngIf="friend.profilePic==''">
+                <img src="../../../assets/pics/small_profile.png" class="user align-self-center">
             </div>
-            <br/>
+            <div class="align-self-center" *ngIf="friend.profilePic!=''">
+                <img src="{{friend.profilePic}}" class="user align-self-center">
+            </div>
+            <div class="flex-column" style="text-align: left; width: 75%">
+                <div class="bx">{{friend.firstName}} {{friend.lastName}}</div>
+                <div>
+                    this is a description {{friend.description}}
+                </div>
+            </div>
+
+            <div class="align-self-center">
+                <!-- <button type="button" class="btn btn-primary "> Add</button> -->
+                <a [routerLink]="['/user-home',friend.userId]" class="btn btn-primary">View</a>
+            </div>
+        </div>
+        <br/>
         <!-- </div> -->
     </div>
 </div>
-<button type="button"><span class="glyphicon glyphicon-file"></span>Add</button>
-
-    <!-- <div class="container bx" style="width: 60%">
-        <div class="d-flex flex-row justify-content-around">
-            <div class="bx ">
-                <img src="../../../assets/pics/small_profile.png" class="user align-self-center">
-            </div>
-            <div class="bx flex-column" style="text-align: left; width: 80%">
-                <div class="" >shubham shaw</div>
-                <div class="">
-                    <p>this is a description.Hellow Peoples.</p>
-                </div>
-            </div>
-            <div class="bx">
-                <button type="button">Add</button>
-            </div>
-        </div>
-    </div> -->

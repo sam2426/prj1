@@ -20,7 +20,9 @@ export class NavbarService {
     }
     else{
       this.isLoggedIn.next(true);
-      this.addItem({ text: 'Home', path: 'user-home' });
+      // this.addItem({ text: 'Home', path: 'user-home' });
+      // [routerLink]="['/blog',blog.blogId]"
+      this.addItem({ text: `${this.cookies.get('firstName')}`, path: `user-home/${this.cookies.get('userId')}` });
       this.addItem({ text: 'My ToDos', path: 'user-todos' });
       this.addItem({ text: 'Collaborate', path: 'user-friends-todos' });
       this.addItem({ text: 'Friends', path: 'user-friends' });
@@ -50,7 +52,7 @@ export class NavbarService {
     this.clearAllItems();
  
     if (role === 'user') {
-      this.addItem({ text: 'Home', path: 'user-home' });
+      this.addItem({ text: `${this.cookies.get('firstName')}`, path: `user-home/${this.cookies.get('userId')}`});
       this.addItem({ text: 'My ToDos', path: 'user-todos' });
       this.addItem({ text: 'Collaborate', path: 'user-friends-todos' });
       this.addItem({ text: 'Friends', path: 'user-friends' });

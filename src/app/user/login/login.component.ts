@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   isLoggedIn = false;
   role = '';
+  userId='';
 
   constructor(
     public toastr:ToastrService,
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   public goToUser(){
-    this.router.navigate(['/user-home']);
+    this.router.navigate(['/user-home/',this.userId]);
   }
 
   public forgetPassword(){
@@ -59,10 +60,12 @@ export class LoginComponent implements OnInit {
           this.cookie.set('authToken', apiResponse.data.authToken);
           this.cookie.set('userId', apiResponse.data.userDetails.userId);
           this.cookie.set('userName', apiResponse.data.userDetails.firstName + ' ' + apiResponse.data.userDetails.lastName);
+          this.cookie.set('firstName',apiResponse.data.userDetails.firstName);
           this.appService.setUserInfoInLocalStorage(apiResponse.data.userDetails);
           this.navbarService.updateNavAfterAuth('user');
           this.navbarService.updateLoginStatus(true);
           this.role = 'user';
+          this.userId=apiResponse.data.userDetails.userId;
           this.toastr.success(apiResponse.message);
           // console.log(apiResponse);
           this.goToUser();

@@ -16,11 +16,14 @@ import { UserInstanceModule } from './user-instance/user-instance.module';
   styleUrls: ['./app.component.css']
 })
 
+
+
 export class AppComponent implements OnInit {
 
   links: Array<{ text: string, path: string }>;
   isLoggedIn:boolean;
-  
+  public thisYear;
+
   constructor(
     private router: Router,
     private navbarService: NavbarService,
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit {
     }else{
       this.isLoggedIn=true;
     }
+    this.thisYear=new Date().getFullYear();
   }
 
   ngOnInit() {

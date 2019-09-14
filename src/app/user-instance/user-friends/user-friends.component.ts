@@ -12,6 +12,7 @@ import { Router } from 'node_modules/@angular/router';
 export class UserFriendsComponent implements OnInit {
 
   public userList:any=[];
+  public userId:String='';
 
   constructor(
     public appService:AppService,
@@ -21,11 +22,12 @@ export class UserFriendsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getFriendList();
+    this.userId=this.cookies.get('userId');
+    this.getFriendList(this.userId);
   }
 
-  public getFriendList:any=()=>{
-    this.appService.friendList().subscribe((apiResponse)=>{
+  public getFriendList:any=(userId)=>{
+    this.appService.friendList(userId).subscribe((apiResponse)=>{
       if(apiResponse.status===200){
         this.userList=apiResponse.data
       }      

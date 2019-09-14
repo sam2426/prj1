@@ -10,7 +10,7 @@ import { UserLogoutComponent } from './user-logout/user-logout.component';
 import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
 
 const routes: Routes = [
-  {path:'user-home', component:UserHomeComponent},
+  {path:'user-home/:userId', component:UserHomeComponent},
   {path:'user-todos',component:UserTodosComponent},
   {path:'user-friends-todos',component:UserFriendsTodosComponent},
   {path:'user-friends',component:UserFriendsComponent},

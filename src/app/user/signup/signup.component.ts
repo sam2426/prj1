@@ -47,8 +47,8 @@ export class SignupComponent implements OnInit {
       // debugger;
       this.selectedFile=new ImageSnippet(event.target.result,file)
       this.appService.uploadImage(this.selectedFile.file).subscribe((apiResponse)=>{
-        this.picUrl=apiResponse;
-        console.log(apiResponse);
+        this.picUrl=apiResponse.data;
+        console.log(apiResponse.data);
       })
     });
     reader.readAsDataURL(file);

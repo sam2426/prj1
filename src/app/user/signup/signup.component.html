@@ -10,11 +10,6 @@
                 <div [hidden]="fname.valid||fname.pristine" class="alert alert-danger h6">
                     First Name is required.
                 </div>
-
-                <div>
-                    <img src="https://app-profile-pics.s3.ap-south-1.amazonaws.com/1568383293250" height="150px" width="150px" alt=" image">
-                </div>
-
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" name="lastName" [(ngModel)]="lastName" #lname="ngModel" class="form-control" placeholder="Last Name" required>

@@ -71,12 +71,38 @@ export class AppService {
     return this.http.post(`${this.url}/users/logout`, params);
   } // end logout function
 
-  public friendList(userId):Observable<any>{
-   return this.http.get(`${this.url}/users/${userId}/allFriends`);
+  public userList(userId):Observable<any>{
+   return this.http.get(`${this.url}/users/${userId}/allUsers`);
   }
+
+  public friendList(userId):Observable<any>{
+    return this.http.get(`${this.url}/users/${userId}/allFriends`);
+   }
 
   public getSingleUser(userId):Observable<any>{
     //passing the id for which data is needed.
     return this.http.get(`${this.url}/users/${userId}/details`);
   }
+
+  public addFriend(userId,friendId):Observable<any>{
+    const params=new HttpParams()
+    .set('receiverUserId',friendId)
+    .set('senderUserId',userId)
+    return this.http.post(`${this.url}/users/addFriend`,params);
+  }
+
+  public acceptReq(userId,friendId):Observable<any>{
+    const params=new HttpParams()
+    .set('receiverUserId',friendId)
+    .set('senderUserId',userId)
+    return this.http.post(`${this.url}/users/acceptReq`,params);
+  }
+
+  public deleteReq(userId,friendId):Observable<any>{
+    const params=new HttpParams()
+    .set('receiverUserId',friendId)
+    .set('senderUserId',userId)
+    return this.http.post(`${this.url}/users/delReq`,params);
+  }
+
 }

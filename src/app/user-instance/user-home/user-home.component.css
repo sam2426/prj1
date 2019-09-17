@@ -8,3 +8,28 @@
     align-items: center;
 
 } */
+
+.panel{
+    border: 1px blue double
+}
+
+.avatar{
+    padding:1px;
+}
+
+.user {
+    display: inline-block;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border:2px black solid;
+    object-fit: cover;
+    padding:4px;
+  }
+
+  .box{
+      border: 3px blue double;
+  }
+  .bx{
+      padding: 5px 0px 5px 0px;
+  }

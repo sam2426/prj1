@@ -9,7 +9,7 @@
                 <img src="{{friend.profilePic}}" class="user align-self-center">
             </div>
             <div class="flex-column" style="text-align: left; width: 75%">
-                <div class="bx">{{friend.firstName}} {{friend.lastName}}</div>
+                <div class="bx" ng-click="userHome()">{{friend.firstName}} {{friend.lastName}}</div>
                 <div>
                     this is a description {{friend.description}}
                 </div>
@@ -18,6 +18,10 @@
             <div class="align-self-center">
                 <!-- <button type="button" class="btn btn-primary "> Add</button> -->
                 <a [routerLink]="['/user-home',friend.userId]" class="btn btn-primary">View</a>
+            </div>
+            <div class="align-self-center">
+                <button type="button" class="btn btn-primary" (click)="addFriend(friend.userId)"> Add Friend</button>
+                <!-- <a [routerLink]="['/user-home',friend.userId]" class="btn btn-primary">View</a> -->
             </div>
         </div>
         <br/>

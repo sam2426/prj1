@@ -37,3 +37,40 @@
         </div>
     </div>
 </div>
+
+<div class="container" style="width: 60%" *ngIf="userList.length>0 && loggedInId==userId">
+    <div *ngFor="let friend of userList">
+        <!-- <div class="col-md-8"> -->
+        <div class="d-flex flex-row justify-content-around box">
+            <div class="align-self-center" *ngIf="friend.profilePic==''">
+                <img src="../../../assets/pics/small_profile.png" class="user align-self-center">
+            </div>
+            <div class="align-self-center" *ngIf="friend.profilePic!=''">
+                <img src="{{friend.profilePic}}" class="user align-self-center">
+            </div>
+            <div class="flex-column" style="text-align: left; width: 70%">
+                <!-- <div class="bx" ng-click="userHome()">{{friend.firstName}} {{friend.lastName}}</div> -->
+                <div><a [routerLink]="['/user-home',friend.userId]">{{friend.firstName}} {{friend.lastName}}</a></div>
+                <div>
+                    this is a description {{friend.description}}
+                </div>
+            </div>
+
+            <div class="flex-column" *ngIf="friend.isFriend">
+                <button class="btn btn-warning btn-sm"style="margin:0.8em;" (click)='unfriend(friend.userId)'>Unfriend</button>
+            </div>
+
+            <div class="flex-column" *ngIf="!friend.isFriend && friend.requestReceived" >
+                <button class="btn btn-danger btn-sm" style="margin:0.8em;" (click)='unfriend(friend.userId)'>Decline Request</button>
+            </div>
+
+            <div class="flex-column" *ngIf="!friend.isFriend && friend.requestSent">
+                <button class="btn btn-success btn-sm"style="margin:0.8em;" (click)='acceptReq(friend.userId)'>Accept Request</button>
+                <button class="btn btn-danger btn-sm"style="margin:0.8em;" (click)='unfriend(friend.userId)'>Decline Request</button>
+            </div>
+
+            <!-- (click)="addFriend(friend.userId) -->
+        </div>
+        <br/>
+    </div>
+</div>

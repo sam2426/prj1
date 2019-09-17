@@ -23,11 +23,29 @@ export class UserFriendsComponent implements OnInit {
 
   ngOnInit() {
     this.userId=this.cookies.get('userId');
-    this.getFriendList(this.userId);
+    this.getAllUsersList(this.userId);
   }
 
-  public getFriendList:any=(userId)=>{
-    this.appService.friendList(userId).subscribe((apiResponse)=>{
+  public userHome(){
+    this.router.navigate(['/user-home',this.userId]);
+  }
+
+  public addFriend(friendId){
+    // console.log(userId);
+    this.appService.addFriend(this.userId, friendId).subscribe((apiResponse)=>{
+      if(apiResponse.status===200){
+        this.toastr.success(apiResponse.message);
+        console.log(apiResponse);
+      }
+      else{
+        this.toastr.error('Unable to add Friend');
+        console.log(apiResponse);
+      }
+    })
+  }
+
+  public getAllUsersList:any=(userId)=>{
+    this.appService.userList(userId).subscribe((apiResponse)=>{
       if(apiResponse.status===200){
         this.userList=apiResponse.data
       }      

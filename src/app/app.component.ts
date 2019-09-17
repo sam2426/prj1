@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
         this.cookies.delete('authToken');
         this.cookies.delete('userId');
         this.cookies.delete('userName');
+        this.cookies.delete('firstName');
         // this.socket.exitSocket()
         this.navbarService.updateLoginStatus(false);
         this.router.navigate(['/']);

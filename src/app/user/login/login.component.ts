@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AppService } from './../../app.service';
+import { AppService } from '../../app.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { NavbarService } from './../../services/navbar.service';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-login',

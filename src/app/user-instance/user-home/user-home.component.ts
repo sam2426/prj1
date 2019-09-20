@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'node_modules/ngx-toastr';
-import { CookieService } from 'node_modules/ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 import { AppService } from '../../app.service';
-import { Router, ActivatedRoute } from 'node_modules/@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // import {MatCardModule} from '@angular/material'
 
 @Component({

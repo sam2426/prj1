@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AppService } from './../../app.service';
+import { AppService } from '../../app.service';
 import { Router } from '@angular/router';
-import { ImageService } from './../../services/image.service'
+import { ImageService } from '../../services/image.service'
 // import { resolve } from 'path';
 // import { reject } from '../../../../node_modules/@types/q';
 

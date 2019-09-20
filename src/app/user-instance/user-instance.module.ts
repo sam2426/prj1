@@ -8,6 +8,7 @@ import { UserFriendsTodosComponent } from './user-friends-todos/user-friends-tod
 import { UserFriendsComponent } from './user-friends/user-friends.component';
 import { UserLogoutComponent } from './user-logout/user-logout.component';
 import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
+import { TodoBodyModule } from './../shared/todo-body/todo-body.module';
 
 const routes: Routes = [
   {path:'user-home/:userId', component:UserHomeComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    TodoBodyModule,
     RouterModule.forChild(routes)
   ]
 })

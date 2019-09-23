@@ -8,7 +8,7 @@ import { Observable } from 'rxjs'
 })
 export class TodoService {
 
-  private url="http://localhost:3000/api/v1";
+  private url="api.anglrapp.site/api/v1";
 
   constructor(public http: HttpClient, public cookies:CookieService) { }
 

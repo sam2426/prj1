@@ -2,14 +2,15 @@
 
 <div class="container">
     <div class="row" style="text-align: left">
-        <div class="col-md-12">
-            <form #logInForm="ngForm" (ngSubmit)="logInFunction()">
+        <div class="col-md-6 offset-md-3 col-sm-10 sm-offset-1" >
+                <h2>Login Form</h2>
+            <form #logInForm="ngForm" (ngSubmit)="logInFunction()" style="max-width: 600px">
 
                 <div class="form-group">
                     <input type="email" name="email" [(ngModel)]="email" #mailId="ngModel" class="form-control" placeholder="Email" required>
                 </div>
                 <div [hidden]="mailId.valid||mailId.pristine" class="alert alert-danger h6">
-                    Email required
+                    Email Required
                 </div>
 
 
@@ -18,7 +19,7 @@
                         required>
                 </div>
                 <div [hidden]="pass.valid||pass.pristine" class="alert alert-danger  h6">
-                    enter password
+                    Enter Password
                 </div>
 
                 <button type="submit" class="btn btn-primary" [disabled]="!logInForm.form.valid">LogIn</button>
@@ -28,7 +29,5 @@
             </form>
             <button class="btn btn-primary" (click)="forgetPassword()">Forget Password</button>
         </div>
-        shubhamshaw6@gmail.com
-        sam741852
     </div>
 </div>

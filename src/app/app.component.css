@@ -28,7 +28,7 @@ body{
   }
   
   #content-wrap {
-    padding-bottom: 3.0rem;    /* Footer height */
+    padding-bottom: 3.8rem;    /* Footer height */
   }
   
   #footer {
@@ -39,3 +39,26 @@ body{
     height: 3.8rem;            /* Footer height */
   }
   
+  .spinner{
+    border: 11px solid rgb(131, 129, 129);
+    border-top: 11px solid #007bff;
+    border-radius: 50%;
+    width:80px;
+    height:80px;
+    animation: spin 800ms linear infinite;
+    top: 45%;
+    left:38%;
+    position: absolute;
+  }
+
+  @keyframes spin{
+    0% {
+      transform: rotate(0deg);
+    }
+    50%{
+      transform: rotate(100deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }

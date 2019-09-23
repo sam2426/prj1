@@ -14,4 +14,8 @@ export class TodoBodyTreeComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleChild(node) {
+    node.showChildren = !node.showChildren;
+  }
+
 }

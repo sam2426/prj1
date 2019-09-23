@@ -38,39 +38,35 @@
     </div>
 </div>
 
-<div class="container" style="width: 60%" *ngIf="userList.length>0 && loggedInId==userId">
-    <div *ngFor="let friend of userList">
-        <!-- <div class="col-md-8"> -->
-        <div class="d-flex flex-row justify-content-around box">
-            <div class="align-self-center" *ngIf="friend.profilePic==''">
-                <img src="../../../assets/pics/small_profile.png" class="user align-self-center">
-            </div>
-            <div class="align-self-center" *ngIf="friend.profilePic!=''">
-                <img src="{{friend.profilePic}}" class="user align-self-center">
-            </div>
-            <div class="flex-column" style="text-align: left; width: 70%">
-                <!-- <div class="bx" ng-click="userHome()">{{friend.firstName}} {{friend.lastName}}</div> -->
-                <div><a [routerLink]="['/user-home',friend.userId]">{{friend.firstName}} {{friend.lastName}}</a></div>
-                <div>
-                    this is a description {{friend.description}}
+<div class="container" *ngIf="userList.length>0 && loggedInId==userId">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div *ngFor="let friend of userList">
+                <div class="row box">
+                    <div class="col-md-2 col-sm-12" *ngIf="friend.profilePic==''">
+                        <img src="../../../assets/pics/small_profile.png" class="user" style="vertical-align: middle;">
+                    </div>
+                    <div class="col-md-2 col-sm-12" *ngIf="friend.profilePic!=''">
+                        <img src="{{friend.profilePic}}" class="user" style="vertical-align: middle;">
+                    </div>
+                    <div class="col-md-6 col-sm-12 ">
+                        <span></span><a [routerLink]="['/user-home',friend.userId]" class="marker-name">{{friend.firstName}} {{friend.lastName}}</a>
+                    </div>
+
+                    <div class="col-md-4" *ngIf="friend.isFriend">
+                        <button class="btn btn-warning btn-sm" (click)='unfriend(friend.userId)'>Unfriend</button>
+                    </div>
+        
+                    <div class="col-md-4" *ngIf="!friend.isFriend && friend.requestReceived" >
+                        <button class="btn btn-danger btn-sm marker-btn"  (click)='unfriend(friend.userId)'>Decline Request</button>
+                    </div>
+        
+                    <div class="col-md-4" *ngIf="!friend.isFriend && friend.requestSent">
+                        <button class="btn btn-success btn-sm marker-btn" (click)='acceptReq(friend.userId)'>Accept Request</button>
+                        <button class="btn btn-danger btn-sm marker-btn" (click)='unfriend(friend.userId)'>Decline Request</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="flex-column" *ngIf="friend.isFriend">
-                <button class="btn btn-warning btn-sm"style="margin:0.8em;" (click)='unfriend(friend.userId)'>Unfriend</button>
-            </div>
-
-            <div class="flex-column" *ngIf="!friend.isFriend && friend.requestReceived" >
-                <button class="btn btn-danger btn-sm" style="margin:0.8em;" (click)='unfriend(friend.userId)'>Decline Request</button>
-            </div>
-
-            <div class="flex-column" *ngIf="!friend.isFriend && friend.requestSent">
-                <button class="btn btn-success btn-sm"style="margin:0.8em;" (click)='acceptReq(friend.userId)'>Accept Request</button>
-                <button class="btn btn-danger btn-sm"style="margin:0.8em;" (click)='unfriend(friend.userId)'>Decline Request</button>
-            </div>
-
-            <!-- (click)="addFriend(friend.userId) -->
         </div>
-        <br/>
     </div>
 </div>

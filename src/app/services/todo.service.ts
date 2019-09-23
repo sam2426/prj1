@@ -22,5 +22,12 @@ export class TodoService {
     return this.http.get(`${this.url}/todo/${userId}/getHeaders`);
   }
 
+  public initiateHeader(data):Observable<any>{
+    const params=new HttpParams()
+    .set('message',data.message)
+    .set('users',data.user);
+    return this.http.post(`${this.url}/todo/initiate`,params);
+  }
+
 
 }

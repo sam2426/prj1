@@ -1,11 +1,13 @@
 <div class="container">
+    <div *ngIf="showLoader" class="spinner"></div>
     <div class="row" style="text-align: left">
-        <div class="col-md-12">
-            <form #signUpForm="ngForm" (ngSubmit)="signUpFunction()">
+        <div class="col-md-6 offset-md-3 col-sm-10 sm-offset-1">
+            <h2>SignUp Form</h2>
+            <form #signUpForm="ngForm" (ngSubmit)="signUpFunction()" style="max-width: 600px">
 
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" name="firstName" [(ngModel)]="firstName" #fname="ngModel" class="form-control" placeholder="First Name" required>
+                    <input type="text" name="firstName" [(ngModel)]="firstName" #fname="ngModel" class="form-control" placeholder="First Name" autofocus required>
                 </div>
                 <div [hidden]="fname.valid||fname.pristine" class="alert alert-danger h6">
                     First Name is required.
@@ -20,15 +22,12 @@
 
                 <div class="form-group">
                         <label for="mobile">Enter Contact Number</label>
-                        <input type="text" name="mobile" [(ngModel)]="mobile" #phone="ngModel" class="form-control" placeholder="Enter Contact details" required>
-                    </div>
-                <div [hidden]="phone.valid||phone.pristine" class="alert alert-danger h6">
-                            Contact detail is required.
+                        <input type="tel" name="mobile" [(ngModel)]="mobile" #phone="ngModel" class="form-control" maxlength="10" placeholder="Enter 10 digit Mobile Number" pattern="[789][0-9]{9}" required>
                     </div>
 
                     <div class="form-group">
                             <label for="email">Enter Email</label>
-                            <input type="email" #mail="ngModel" name="email" [(ngModel)]="email" class="form-control" placeholder="Enter email" required>
+                            <input type="email" #mail="ngModel" name="email" [(ngModel)]="email" class="form-control" placeholder="someone@example.com" required>
                         </div>
                     <div [hidden]="mail.valid||mail.pristine" class="alert alert-danger h6">
                                 e-mail is required.
@@ -36,11 +35,11 @@
 
                     <div class="form-group">
                             <label for="password">Enter Password</label>
-                            <input type="password" #pass="ngModel" name="password" [(ngModel)]="password" class="form-control" placeholder="Enter Password" required>
+                            <input type="password" #pass="ngModel" name="password" [(ngModel)]="password" class="form-control" placeholder="8-15 Alphanumeric Characters" pattern="^([a-zA-Z0-9@*#]{8,15})$" required>
                         </div>
-                    <div [hidden]="pass.valid||pass.pristine" class="alert alert-danger  h6">
+                    <!-- <div [hidden]="pass.valid||pass.pristine" class="alert alert-danger  h6">
                                 enter password
-                        </div>
+                        </div> -->
                     
                     <div class="form-group">
                         <label for="gender">Category</label>
@@ -64,13 +63,10 @@
                     </div>
 
                     <div *ngIf="selectedFile" class="img-preview-container">
-                        <div class="img-preview"
-                            [ngStyle]="{'background-image':'url('+ selectedFile.src +')'}" >
-                        </div>
+                        <img src="{{selectedFile.src}}">
                     </div>
 
                 <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.form.valid">SignUP</button>
-
             </form>
         </div>
     </div>

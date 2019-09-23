@@ -12,11 +12,15 @@ import { Router } from '@angular/router';
 })
 export class UserTodosComponent implements OnInit {
 
-
+  public userInfo:any;
+  public headerName:String;
   public userId:String='';
-  public todoList:any[];
+  public todoList:any=[];
   public isTodoHeaderPresent:Boolean=false;
-  public userTodoHeaders:any[];
+  public userTodoHeaders:any=[];
+  public pageValue: number = 0;
+  public selectedTodoName:String;
+  public selectedTodoId:String;
 
   constructor(
     public appService:AppService,
@@ -28,18 +32,21 @@ export class UserTodosComponent implements OnInit {
 
   ngOnInit() {
 
+    this.userInfo=this.appService.getUserInfoFromLocalStorage();
     this.userId=this.cookies.get('userId');
     this.getUserTodoHeaders(this.userId);
-    this.getAllTodoList(this.userId);
+    // this.getAllTodoList(this.userId);
 
   }
 
   public getUserTodoHeaders:any=(userId)=>{
-    this.todoService.getUserTodoHeaders(userId).subscribe((apiResponse)=>{
-      if(apiResponse===200){
+    this.todoService.getUserTodoHeaders('7kCiOnhg').subscribe((apiResponse)=>{
+      if(apiResponse.status===200){
+        // console.log(apiResponse.data);
         this.isTodoHeaderPresent=true;
         for(let x of apiResponse.data){
-          let temp={'todoId':x.todoId,
+          let temp={
+                    'todoId':x.todoId,
                     'todoBody':x.todoBody,
                   };
                   this.userTodoHeaders.push(temp);
@@ -52,14 +59,58 @@ export class UserTodosComponent implements OnInit {
     })
   }
 
+  public addHeader:any=()=>{
+    let data={
+      message:this.headerName,
+      user:this.userId
+    }
+    this.todoService.initiateHeader(data).subscribe((apiResponse)=>{
+      if(apiResponse.status===200){
+        this.getUserTodoHeaders(this.userId);
+        console.log(apiResponse.data);
+      }else{
+        console.log('header not created');
+      }
+    })
+  }
+
+  public todoSelected:any=(todoId,todoBody)=>{
+    console.log("getting data of "+todoId);
+    this.selectedTodoId = todoId;
+    this.selectedTodoName = todoBody;
+    this.todoList = [];
+    this.pageValue = 0;
+    // let chatDetails = {
+    //   userId: this.userInfo.userId,
+    //   senderId: id
+    // }
+    // this.socket.markChatAsSeen(chatDetails);
+    this.getPreviousTodoData();
+  }
+
+  public getPreviousTodoData:any=()=>{
+    // let previousData=(this.todoList.length>0 ? this.todoList.slice() : [] );
+    // this.todoService.getChat(this.userInfo.userId,this.receiverId,this.pageValue*10).subscribe((apiResponse)=>{
+      this.todoService.todoList("hd-z7yHBDGq").subscribe((apiResponse)=>{
+      console.log(apiResponse);
+      if(apiResponse.status===200){
+        this.todoList=apiResponse.data.childNodes;
+      }else{
+        // this.messageList=previousData;
+        this.toastr.warning('No Messages Availbale');
+      }
+    },(err) => {
+      this.toastr.error('some error occured')
+    });
+  }// end get previous chat with any user
+
+
   public getAllTodoList:any=(userId)=>{
-    this.todoService.todoList("hd-SIiAHiVT").subscribe((apiResponse)=>{
+    this.todoService.todoList("hd-fTW-5Eqc").subscribe((apiResponse)=>{
       if(apiResponse.status===200){
         this.todoList=apiResponse.data.childNodes;
       }
       console.log(this.todoList);
     })
   }
-
-
 }

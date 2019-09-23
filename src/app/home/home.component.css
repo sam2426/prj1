@@ -1,0 +1,19 @@
+.row{
+    margin-top: 50px;
+}
+
+p{
+    text-align: justify;
+}
+
+
+
+@media screen and (max-width:767px){
+
+  .row{
+      margin-top: 10px;
+  }
+  img{
+    margin-bottom: 10px;
+}
+}

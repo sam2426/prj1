@@ -1,19 +1,11 @@
-<!-- <p>user-todos works!</p> -->
-
 <div class="container">
   <div class="row">
 
     <div class="d-sm-none" style="position:fixed;width:100%;z-index:1;">
-
       <div class="col-sm-12 p-0 ">
-
         <nav class="navbar navbar-expand-xs navbar-fixed navbar-dark bg-dark">
-
           <a class="navbar-brand text-white">
-            here is the logged in user
-            <!-- {{userInfo.firstName}} {{userInfo.lastName}}
-            <i class="fa fa-circle online" *ngIf="disconnectedSocket == false"></i>
-            <i class="fa fa-circle offline" *ngIf="disconnectedSocket == true"></i> -->
+             {{userInfo.firstName}} {{userInfo.lastName}}
           </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -25,7 +17,7 @@
 
             <ul class="list">
               <li class="p-2 typeOfChats">
-                Online Users:
+                Todo Heads
               </li>
               <!-- <li class="clearfix cursorPointer" [ngClass]="{'activeChat': user.chatting == true}" (click)="userSelectedToChat(user.userId, user.name)"
                 *ngFor="let user of userList">
@@ -34,33 +26,55 @@
                 </div>
               </li> -->
               <li>
-                <!-- <button (click)="logout()" class="btn btn-info customButton">Logout</button> -->
-                <button class="btn btn-info customButton">Logout</button>
-
+                <button data-target="#addHeaderModal" data-toggle="modal" class="btn btn-info btn-sm customButton">Add New</button>
+                <div *ngFor="let header of userTodoHeaders" style="float: left; padding-left: 0.4em;">
+                  <li class="clearfix cursorPointer" (click)="todoSelected(header.todoId,header.todoBody)" style="background: #393a41; float: left; color: aliceblue;"> {{header.todoBody}}</li>
+                </div>
               </li>
             </ul>
           </div>
         </nav>
       </div>
     </div>
+<!-- div for large screen ends -->
 
+<!-- modal for inserting todo head starts -->
+    <div class="col-xs-12">
+      <div class="modal fade" data-keyboard="false" data-backdrop="static" id="addHeaderModal" tabindex="-1">
+        <div class="modal-dialog modal-sm" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="model-title">Add Header</h5>
+              <button class="close" data-dismiss="modal" style="outline: none;">&times;</button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="headerName" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Enter Header Name" >
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary btn-sm" (click)="addHeader()">Add</button>
+              <button class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+<!-- nav for small screen starts -->
     <div class="d-none d-sm-block col-sm-4 col-md-4 people-list p-0" id="people-list">
-
       <div class="p-3 text-white textCapitalize textCenter">
-        username of the logged in user
-        <!-- {{userInfo.firstName}} {{userInfo.lastName}}
-        <i class="fa fa-circle online" *ngIf="disconnectedSocket == false"></i>
-        <i class="fa fa-circle offline" *ngIf="disconnectedSocket == true"></i> -->
+         {{userInfo.firstName}} {{userInfo.lastName}}
         <br>
         <br>
-        <!-- <button (click)="logout()" class="btn btn-info customButton">Logout</button> -->
-        <button class="btn btn-info customButton">Logout</button>
+        <button data-target="#addHeaderModal" data-toggle="modal" class="btn btn-info btn-sm customButton">Add New</button>
       </div>
 
       <ul class="list">
         <li class="p-2 typeOfChats">
-          Online Users:
+          ToDo Heads
         </li>
         <!-- <li class="clearfix cursorPointer" [ngClass]="{'activeChat': user.chatting == true}"
           *ngFor="let user of userList" (click)="userSelectedToChat(user.userId, user.name)">
@@ -68,6 +82,12 @@
             <app-user-details [userFirstName]="user.name" [userLastName]="''" [userStatus]="'online'" [messageRead]="user.unread"></app-user-details>
           </div>
         </li>    -->
+
+        <div *ngFor="let header of userTodoHeaders" style="float: left;
+        padding-left: 0.4em;">
+            <li class="clearfix cursorPointer" (click)="todoSelected(header.todoId,header.todoBody)" style="float: left; color: aliceblue; background: #393a41;"> {{header.todoBody}}</li>
+        </div>
+        
       </ul>
     </div>
 
@@ -106,6 +126,10 @@
           </div>
         </div>
       <!-- end chat-header -->
+<br><hr>
+      <div class="tree-wrapper">
+          <app-todo-body-tree [todoList]="todoList"></app-todo-body-tree>
+        </div>
 
       <!-- <div #scrollMe [scrollTop]="(scrollToChatTop)?0:scrollMe.scrollHeight" class="chat-history" *ngIf="receiverName"> 
         <ul>
@@ -133,9 +157,13 @@
         </ul> 
 
       </div>-->
-      <div *ngIf="!receiverName" class="col-sm blankContent">
+
+      <!--imppppppp ssam  -->
+      <!-- <div *ngIf="!receiverName" class="col-sm blankContent">
         Click on user for start a chat!!!
-      </div>
+      </div> -->
+
+
       <!-- end chat-history -->
 
       <!-- <div class="chat-message clearfix p-2" *ngIf="receiverName">
@@ -167,6 +195,6 @@
 
 
 
-  <div class="tree-wrapper">
+  <!-- <div class="tree-wrapper">
     <app-todo-body-tree [todoList]="todoList"></app-todo-body-tree>
-  </div>
+  </div> -->

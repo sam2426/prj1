@@ -20,7 +20,16 @@ import { AppComponent } from './app.component';
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      maxOpened:2,
+      autoDismiss:true,
+      preventDuplicates:true,
+      countDuplicates:true,
+      closeButton:true,
+      timeOut: 2000,
+      // positionClass: 'inline',
+      // positionClass: 'toast-bottom-right',
+    })
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

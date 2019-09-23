@@ -3,9 +3,9 @@
 <ul *ngIf="todoList">
    <li *ngFor="let node of todoList">
         <span *ngIf="node.childNodes != 0"><b>></b></span>
-        <span >{{node.todoBody}}</span>
-        <!-- <span (click)="toggleChild(node)" > {{ node.name }} </span> -->
-        <app-todo-body-tree [todoList]="node.childNodes"></app-todo-body-tree>       
+        <!-- <span >{{node.todoBody}}</span> -->
+        <span (click)="toggleChild(node)" > {{ node.todoBody }} </span>
+        <app-todo-body-tree *ngIf="node.showChildren" [todoList]="node.childNodes"></app-todo-body-tree>       
     </li> 
   </ul>
 

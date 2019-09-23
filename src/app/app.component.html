@@ -30,10 +30,12 @@
 
     <!-- </div> -->
     <br/>
+    <div *ngIf="showLoader" class="spinner"></div>
     <div style="padding-top: 50px; text-align: center " id="content-wrap">
             <router-outlet></router-outlet>
     </div>
 <!-- </div> -->
+<div toastContainer></div>
 <footer class="bg-dark" id="footer">
     <div class="container ">
         <div class=" row">

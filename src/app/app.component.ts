@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { NavbarService } from './services/navbar.service';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -20,9 +20,10 @@ import { UserInstanceModule } from './user-instance/user-instance.module';
 
 export class AppComponent implements OnInit {
 
-  links: Array<{ text: string, path: string }>;
-  isLoggedIn:boolean;
+  public links: Array<{ text: string, path: string }>;
+  public isLoggedIn:boolean;
   public thisYear;
+  public showLoader:boolean=false;
 
   constructor(
     private router: Router,
@@ -30,7 +31,17 @@ export class AppComponent implements OnInit {
     private appService: AppService,
     private cookies: CookieService,
     public toastr: ToastrService,
+    
   ) {
+    this.router.events.subscribe((routerEvent:Event)=>{
+      if(routerEvent instanceof NavigationStart){
+        this.showLoader=true;
+      }
+      if(routerEvent instanceof NavigationEnd){
+        this.showLoader=false;
+      }
+    })
+
       if(!(this.cookies.get('authToken'))){
       this.isLoggedIn=false;
     }else{
